@@ -4,13 +4,15 @@
         "name": "Türkçe Yama 1",
         "version": "1.0",
         "download_url": "https://drive.google.com/uc?export=download&id=1w9YLmkusxJmYGIZ5NT-9KDS_Wy8d6LtU",
-        "description": "İlk Türkçe yama"
+        "description": "İlk Türkçe yama",
+        "image_url": "https://github.com/hayatimyok/turkceyamalar/blob/main/resimler/a896144046a1b5bd6e3e034d00b4f73a.png?raw=true"
     },
     {
         "id": 2,
         "name": "Türkçe Yama 2",
         "version": "1.1",
-        "download_url": "https://drive.google.com/uc?export=download&id=1w9YLmkusxJmYGIZ5NT-9KDS_Wy8d6LtU",
-        "description": "Güncellenmiş Türkçe yama"
+        "download_url": "https://drive.google.com/uc?export=download&id=2x9YLmkusxJmYGIZ5NT-9KDS_Wy8d6LtU",
+        "description": "Güncellenmiş Türkçe yama",
+        "image_url": "https://github.com/hayatimyok/turkceyamalar/blob/main/resimler/a896144046a1b5bd6e3e034d00b4f73a.png?raw=true"
     }
 ]
