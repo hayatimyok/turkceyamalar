@@ -79,6 +79,7 @@
                 alert('Yama başarıyla eklendi!');
             } catch (error) {
                 alert('Yama eklenirken bir hata oluştu: ' + error.message);
+                console.error(error);
             }
         });
 
@@ -99,11 +100,17 @@
             }
 
             const data = await response.json();
+            console.log('Mevcut JSON verisi:', data);
+
             const content = atob(data.content); // Base64'ü çöz
+            console.log('Mevcut JSON içeriği:', content);
+
             const patches = JSON.parse(content);
+            console.log('Mevcut yamalar:', patches);
 
             // Yeni yamayı ekle
             patches.push(patch);
+            console.log('Yeni yama eklendi:', patch);
 
             // JSON dosyasını güncelle
             const updatedContent = btoa(JSON.stringify(patches, null, 2)); // Base64'e çevir
@@ -123,6 +130,8 @@
             if (!updateResponse.ok) {
                 throw new Error('JSON dosyası güncellenemedi.');
             }
+
+            console.log('JSON dosyası başarıyla güncellendi.');
         }
     </script>
 </body>
