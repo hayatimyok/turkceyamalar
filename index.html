@@ -64,7 +64,7 @@
     </form>
 
     <script>
-        document.getElementById('patchForm').addEventListener('submit', function (e) {
+        document.getElementById('patchForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const patch = {
@@ -74,8 +74,12 @@
                 description: document.getElementById('description').value
             };
 
-            // GitHub API ile JSON dosyasını güncelle
-            updatePatch(patch);
+            try {
+                await updatePatch(patch);
+                alert('Yama başarıyla eklendi!');
+            } catch (error) {
+                alert('Yama eklenirken bir hata oluştu: ' + error.message);
+            }
         });
 
         async function updatePatch(patch) {
@@ -89,6 +93,11 @@
                     'Authorization': `token ${token}`
                 }
             });
+
+            if (!response.ok) {
+                throw new Error('JSON dosyası alınamadı.');
+            }
+
             const data = await response.json();
             const content = atob(data.content); // Base64'ü çöz
             const patches = JSON.parse(content);
@@ -98,7 +107,7 @@
 
             // JSON dosyasını güncelle
             const updatedContent = btoa(JSON.stringify(patches, null, 2)); // Base64'e çevir
-            await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
+            const updateResponse = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `token ${token}`,
@@ -111,7 +120,9 @@
                 })
             });
 
-            alert('Yama başarıyla eklendi!');
+            if (!updateResponse.ok) {
+                throw new Error('JSON dosyası güncellenemedi.');
+            }
         }
     </script>
 </body>
